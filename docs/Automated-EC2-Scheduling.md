@@ -1,9 +1,9 @@
 # AWS Cost Optimization: Automated EC2 Start/Stop
 
-## 📌 Overview
+## Overview
 Managing AWS cloud costs is crucial, especially for non-production environments where instances may be left running unnecessarily. This solution **automates EC2 instance scheduling** using **Amazon EventBridge Scheduler**, **AWS Lambda**, and **SNS notifications**, potentially reducing costs by **up to 30%**.
 
-## 🚀 Solution Components
+## Solution Components
 This automation leverages several AWS services:
 - **Amazon EventBridge Scheduler** → Triggers EC2 start/stop operations based on predefined schedules.
 - **AWS Lambda Function** → Executes instance start/stop logic dynamically.
@@ -11,7 +11,7 @@ This automation leverages several AWS services:
 
 ---
 
-## ⚙️ **Step-by-Step Setup Guide**
+## **Step-by-Step Setup Guide**
 
 ### **Step 1: IAM Role Configuration**
 1. Create an **IAM Role** with the following permissions:
