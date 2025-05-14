@@ -37,31 +37,24 @@ Assign the IAM role created in Step 1.
 #### 2. Use the Python Script Below
 Modify the function to start or stop EC2 instances:
 #
-python
+```python
 import boto3
 import os
-
- 
 ec2 = boto3.client('ec2') --- Define AWS EC2 client
-
 INSTANCE_IDS = ['i-xxxxxxxxxxxxxxxxx'] --- Instance IDs to control (update these!)
-
 def lambda_handler(event, context):
     action = event.get('action', 'stop')  ---- Default action: stop
-    
     if action == 'start':
         ec2.start_instances(InstanceIds=INSTANCE_IDS)
         message = f"Started instances: {INSTANCE_IDS}"
     else:
         ec2.stop_instances(InstanceIds=INSTANCE_IDS)
         message = f"Stopped instances: {INSTANCE_IDS}"
-    
     if 'sns_topic_arn' in event:
         sns = boto3.client('sns')
         sns.publish(TopicArn=event['sns_topic_arn'], Message=message) ---- Notify via SNS if configured
-
     return {"status": "success", "message": message}
-#
+
 📌 Note: Replace "i-xxxxxxxxxxxxxxxxx" with actual EC2 instance IDs.
 
 ### Step 3: Create Amazon EventBridge Scheduler
@@ -80,11 +73,12 @@ Stop instances: cron(0 20 * * ? *) → (Daily at 8 PM UTC)
 Target → Select Lambda function (EC2StartStopScheduler).
 
 In Input JSON, specify:
-
+***
 json
 {
   "action": "start"
 }
+***
 (Create another scheduler with "action": "stop" for stopping instances.)
 
 ### Step 4: Set Up Amazon SNS for Notifications
@@ -123,6 +117,7 @@ Verify SNS notifications are delivered.
 
 ### Final Thoughts
 With this setup: 
+#
 ✔️ Automated cost-saving operations for non-production instances. 
 ✔️ Real-time notifications to keep track of instance state changes. 
 ✔️ Event-driven architecture without manual intervention.
