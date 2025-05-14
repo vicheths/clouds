@@ -1,20 +1,20 @@
-# 📌 AWS Database Monitoring: CloudWatch Alarms & Telegram Alerts
+# AWS Database Monitoring: CloudWatch Alarms & Telegram Alerts
 
-## 🛠 Overview
+## Overview
 This repository provides an **automated monitoring solution for AWS databases** using:
 #
 ✔ **CloudWatch Alarms** → Monitors RDS metrics (CPU, storage, connections).  
 ✔ **Amazon SNS** → Triggers alerts when thresholds are exceeded.  
 ✔ **AWS Lambda** → Sends notifications to a **Telegram channel** for real-time response.  
 
-## 🚀 How It Works
+## How It Works
 1. **CloudWatch Alarms** detect abnormal database activity.
 2. **SNS Topics** send alerts when thresholds are breached.
 3. **Lambda Function** forwards alerts to Telegram via **bot API**.
 
 ---
 
-## ⚙️ **Step-by-Step Setup Guide**
+## **Step-by-Step Setup Guide**
 
 ### 🔹 **Step 1: Configure Amazon SNS Topic**
 1. Open **AWS SNS** → Click **Create Topic**.
