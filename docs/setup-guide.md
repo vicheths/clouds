@@ -1,8 +1,8 @@
-Managing Cloud cost effetively is crucial, especially for non-production environments where resource are often left running unnecessarily. By implementing an automated start and stop schedule for non-production instance, Organizations can save up to 30% on usage costs.
+## Managing Cloud cost effetively is crucial, especially for non-production environments where resource are often left running unnecessarily. By implementing an automated start and stop schedule for non-production instance, Organizations can save up to 30% on usage costs.
 
-Although this is a basic implementation, it is incredible effective and proactive. The True power lies not just starting and stopping instances, but in how automation can significantly improve operational efficiency and reduce manual overhead.
+## Although this is a basic implementation, it is incredible effective and proactive. The True power lies not just starting and stopping instances, but in how automation can significantly improve operational efficiency and reduce manual overhead.
 
-This solution combines serveral AWS Services:
+## This solution combines serveral AWS Services:
 - Amazon EvenBridge Scheduler to trigger actions based on defined schedules.
 - AWS Lambda Functions to execute start/stop operations with conditional logic.
 - Amazon SNS Topics to send real-time notifications via email, Telegrams, or other communication channels.
@@ -25,7 +25,7 @@ Attach this role to your Lambda function in later steps.
 ### Step 2: Create an AWS Lambda Function
 Your Lambda function will handle the start/stop operations based on the EventBridge trigger.
 
-1. Navigate to AWS Lambda
+#### 1. Navigate to AWS Lambda
 Go to AWS Lambda in the console.
 
 Click Create Function → Choose Author from scratch.
@@ -34,7 +34,7 @@ Name it "EC2StartStopScheduler" and select Python runtime.
 
 Assign the IAM role created in Step 1.
 
-2. Use the Python Script Below
+#### 2. Use the Python Script Below
 Modify the function to start or stop EC2 instances:
 
 python
@@ -90,17 +90,17 @@ json
 ### Step 4: Set Up Amazon SNS for Notifications
 If you want email or Telegram alerts, SNS can be useful.
 
-1. Create an SNS Topic
+#### 1. Create an SNS Topic
 Go to Amazon SNS → Click Create Topic.
 
 Name it "EC2StartStopNotifications".
 
-2. Subscribe to the Topic
+#### 2. Subscribe to the Topic
 Choose Email or Lambda (for further processing).
 
 Confirm the subscription via your email.
 
-3. Modify Lambda Function to Publish Alerts
+#### 3. Modify Lambda Function to Publish Alerts
 Update the Lambda function’s event JSON:
 
 json
@@ -122,4 +122,9 @@ Ensure EventBridge triggers the function correctly.
 Verify SNS notifications are delivered.
 
 ### Final Thoughts
-With this setup: ✔️ Automated cost-saving operations for non-production instances. ✔️ Real-time notifications to keep track of instance state changes. ✔️ Event-driven architecture without manual intervention.
+With this setup: 
+✔️ Automated cost-saving operations for non-production instances. 
+✔️ Real-time notifications to keep track of instance state changes. 
+✔️ Event-driven architecture without manual intervention.
+
+#### Cheers!!
