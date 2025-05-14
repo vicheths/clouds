@@ -1,59 +1,43 @@
-### Managing Cloud cost effetively is crucial, especially for non-production environments where resource are often left running unnecessarily. By implementing an automated start and stop schedule for non-production instance, Organizations can save up to 30% on usage costs.
+# AWS Cost Optimization: Automated EC2 Start/Stop
 
-### Although this is a basic implementation, it is incredible effective and proactive. The True power lies not just starting and stopping instances, but in how automation can significantly improve operational efficiency and reduce manual overhead.
+## 📌 Overview
+Managing AWS cloud costs is crucial, especially for non-production environments where instances may be left running unnecessarily. This solution **automates EC2 instance scheduling** using **Amazon EventBridge Scheduler**, **AWS Lambda**, and **SNS notifications**, potentially reducing costs by **up to 30%**.
 
-### This solution combines serveral AWS Services:
-- Amazon EvenBridge Scheduler to trigger actions based on defined schedules.
-- AWS Lambda Functions to execute start/stop operations with conditional logic.
-- Amazon SNS Topics to send real-time notifications via email, Telegrams, or other communication channels.
+## 🚀 Solution Components
+This automation leverages several AWS services:
+- **Amazon EventBridge Scheduler** → Triggers EC2 start/stop operations based on predefined schedules.
+- **AWS Lambda Function** → Executes instance start/stop logic dynamically.
+- **Amazon SNS** → Sends notifications via email, Telegram, or other communication channels.
 
-## Let deepdive into step by step configuration.
+---
 
-### Step 1: Create an IAM Role for Lambda
-Your Lambda function will need permissions to start and stop EC2 instances.
+## ⚙️ **Step-by-Step Setup Guide**
 
-Go to IAM in AWS Console.
+### **Step 1: IAM Role Configuration**
+1. Create an **IAM Role** with the following permissions:
+   - `AWSLambdaBasicExecutionRole`
+   - `AmazonEC2FullAccess` *(Adjust permissions for security best practices.)*
+2. Attach this role to the **Lambda function** in the next step.
 
-Create a new role with:
+### **Step 2: Create AWS Lambda Function**
+1. Navigate to **AWS Lambda** → Click **Create Function**.
+2. Select **Python** as the runtime.
+3. Use the following Python script:
 
-AWSLambdaBasicExecutionRole
-
-AmazonEC2FullAccess (for simplicity, but should be limited to necessary actions).
-
-Attach this role to your Lambda function in later steps.
-
-### Step 2: Create an AWS Lambda Function
-Your Lambda function will handle the start/stop operations based on the EventBridge trigger.
-
-#### 1. Navigate to AWS Lambda
-Go to AWS Lambda in the console.
-
-Click Create Function → Choose Author from scratch.
-
-Name it "EC2StartStopScheduler" and select Python runtime.
-
-Assign the IAM role created in Step 1.
-
-#### 2. Use the Python Script Below
-Modify the function to start or stop EC2 instances:
-#
 ```python
 import boto3
-import os
-ec2 = boto3.client('ec2') --- Define AWS EC2 client
-INSTANCE_IDS = ['i-xxxxxxxxxxxxxxxxx'] --- Instance IDs to control (update these!)
+
+ec2 = boto3.client('ec2')
+INSTANCE_IDS = ['i-xxxxxxxxxxxxxxxxx']  # Replace with actual EC2 IDs
+
 def lambda_handler(event, context):
-    action = event.get('action', 'stop')  ---- Default action: stop
+    action = event.get('action', 'stop')  # Default action: stop
     if action == 'start':
         ec2.start_instances(InstanceIds=INSTANCE_IDS)
-        message = f"Started instances: {INSTANCE_IDS}"
     else:
         ec2.stop_instances(InstanceIds=INSTANCE_IDS)
-        message = f"Stopped instances: {INSTANCE_IDS}"
-    if 'sns_topic_arn' in event:
-        sns = boto3.client('sns')
-        sns.publish(TopicArn=event['sns_topic_arn'], Message=message) ---- Notify via SNS if configured
-    return {"status": "success", "message": message}
+
+    return {"status": "success", "action": action, "instances": INSTANCE_IDS}
 ```
 📌 Note: Replace "i-xxxxxxxxxxxxxxxxx" with actual EC2 instance IDs.
 
