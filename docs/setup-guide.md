@@ -54,7 +54,7 @@ def lambda_handler(event, context):
         sns = boto3.client('sns')
         sns.publish(TopicArn=event['sns_topic_arn'], Message=message) ---- Notify via SNS if configured
     return {"status": "success", "message": message}
-
+```
 📌 Note: Replace "i-xxxxxxxxxxxxxxxxx" with actual EC2 instance IDs.
 
 ### Step 3: Create Amazon EventBridge Scheduler
@@ -69,16 +69,17 @@ Schedule expression:
 Start instances: cron(0 8 * * ? *) → (Daily at 8 AM UTC)
 
 Stop instances: cron(0 20 * * ? *) → (Daily at 8 PM UTC)
+
 #
 Target → Select Lambda function (EC2StartStopScheduler).
 
 In Input JSON, specify:
-***
+```python
 json
 {
   "action": "start"
 }
-***
+```
 (Create another scheduler with "action": "stop" for stopping instances.)
 
 ### Step 4: Set Up Amazon SNS for Notifications
@@ -96,21 +97,21 @@ Confirm the subscription via your email.
 
 #### 3. Modify Lambda Function to Publish Alerts
 Update the Lambda function’s event JSON:
-
+```python
 json
 {
   "action": "stop",
   "sns_topic_arn": "arn:aws:sns:region:account-id:EC2StartStopNotifications"
 }
-
+```
 
 ### Step 5: Test the Automation
 Manually invoke the Lambda function from the AWS console with:
-#
+```python
 json
 {"action": "start"}
 (or { "action": "stop" } to stop instances.)
-#
+```
 Ensure EventBridge triggers the function correctly.
 
 Verify SNS notifications are delivered.
