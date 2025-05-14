@@ -7,9 +7,9 @@ This solution combines serveral AWS Services:
 - AWS Lambda Functions to execute start/stop operations with conditional logic.
 - Amazon SNS Topics to send real-time notifications via email, Telegrams, or other communication channels.
 
-Let deepdive into step by step configuration.
+# Let deepdive into step by step configuration.
 
-Step 1: Create an IAM Role for Lambda
+### Step 1: Create an IAM Role for Lambda
 Your Lambda function will need permissions to start and stop EC2 instances.
 
 Go to IAM in AWS Console.
@@ -22,7 +22,7 @@ AmazonEC2FullAccess (for simplicity, but should be limited to necessary actions)
 
 Attach this role to your Lambda function in later steps.
 
-Step 2: Create an AWS Lambda Function
+### Step 2: Create an AWS Lambda Function
 Your Lambda function will handle the start/stop operations based on the EventBridge trigger.
 
 1. Navigate to AWS Lambda
@@ -41,11 +41,10 @@ python
 import boto3
 import os
 
-# Define AWS EC2 client
-ec2 = boto3.client('ec2')
+ 
+ec2 = boto3.client('ec2') --- Define AWS EC2 client
 
-# Instance IDs to control (update these!)
-INSTANCE_IDS = ['i-xxxxxxxxxxxxxxxxx']
+INSTANCE_IDS = ['i-xxxxxxxxxxxxxxxxx'] --- Instance IDs to control (update these!)
 
 def lambda_handler(event, context):
     action = event.get('action', 'stop')  # Default action: stop
@@ -57,15 +56,15 @@ def lambda_handler(event, context):
         ec2.stop_instances(InstanceIds=INSTANCE_IDS)
         message = f"Stopped instances: {INSTANCE_IDS}"
 
-    # Notify via SNS if configured
+    
     if 'sns_topic_arn' in event:
         sns = boto3.client('sns')
-        sns.publish(TopicArn=event['sns_topic_arn'], Message=message)
+        sns.publish(TopicArn=event['sns_topic_arn'], Message=message) ---- Notify via SNS if configured
 
     return {"status": "success", "message": message}
 📌 Note: Replace "i-xxxxxxxxxxxxxxxxx" with actual EC2 instance IDs.
 
-Step 3: Create Amazon EventBridge Scheduler
+### Step 3: Create Amazon EventBridge Scheduler
 This service will trigger your Lambda function at specified times.
 
 Open Amazon EventBridge → Click Scheduler.
@@ -88,7 +87,7 @@ json
 }
 (Create another scheduler with "action": "stop" for stopping instances.)
 
-Step 4: Set Up Amazon SNS for Notifications
+### Step 4: Set Up Amazon SNS for Notifications
 If you want email or Telegram alerts, SNS can be useful.
 
 1. Create an SNS Topic
@@ -109,7 +108,9 @@ json
   "action": "stop",
   "sns_topic_arn": "arn:aws:sns:region:account-id:EC2StartStopNotifications"
 }
-Step 5: Test the Automation
+
+
+### Step 5: Test the Automation
 Manually invoke the Lambda function from the AWS console with:
 
 json
@@ -120,5 +121,5 @@ Ensure EventBridge triggers the function correctly.
 
 Verify SNS notifications are delivered.
 
-Final Thoughts
+### Final Thoughts
 With this setup: ✔️ Automated cost-saving operations for non-production instances. ✔️ Real-time notifications to keep track of instance state changes. ✔️ Event-driven architecture without manual intervention.
