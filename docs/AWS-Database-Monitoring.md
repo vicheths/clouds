@@ -2,6 +2,7 @@
 
 ## 🛠 Overview
 This repository provides an **automated monitoring solution for AWS databases** using:
+#
 ✔ **CloudWatch Alarms** → Monitors RDS metrics (CPU, storage, connections).  
 ✔ **Amazon SNS** → Triggers alerts when thresholds are exceeded.  
 ✔ **AWS Lambda** → Sends notifications to a **Telegram channel** for real-time response.  
@@ -68,14 +69,14 @@ def lambda_handler(event, context):
 ```
 📌 Replace TELEGRAM_BOT_TOKEN and TELEGRAM_CHAT_ID with actual values.
 
-🔹 Step 4: Subscribe Lambda Function to SNS Topic
-Go to SNS Topic → "DatabaseAlarmNotifications".
+###🔹 Step 4: Subscribe Lambda Function to SNS Topic
+Go to **SNS Topic** → "DatabaseAlarmNotifications".
 
-Click Create Subscription.
+Click Create **Subscription**.
 
-Choose AWS Lambda → Select "SendDatabaseAlertsToTelegram" function.
+Choose **AWS Lambda** → Select "SendDatabaseAlertsToTelegram" function.
 
-Click Create Subscription.
+Click Create **Subscription**.
 
 🎯 Testing & Validation
 ✅ Trigger a Test Alarm
@@ -87,7 +88,7 @@ Ensure a Telegram alert is received.
 
 ✅ Invoke Lambda Function Manually
 Run this test event:
-
+```python
 json
 {
   "Records": [
@@ -98,6 +99,8 @@ json
     }
   ]
 }
+```
+###
 ✔ Telegram should receive a formatted alert message.
 
 #### Cheers !!
