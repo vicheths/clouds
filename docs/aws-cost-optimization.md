@@ -1,7 +1,7 @@
-## **Overview: AWS Cost Optimization Checklist**
+# **Overview: AWS Cost Optimization Checklist**
 This article provides a structured checklist to help AWS users identify and eliminate unnecessary cloud costs. It highlights common cost inefficiencies across various AWS services, such as EC2, EBS, RDS, S3, and Load Balancers, while offering actionable strategies to optimize spending.
 
-# Key points covered include:
+## Key points covered include:
 
 | **Category**                     | **Optimization Strategy**                                        | **Actionable Steps** |
 |-----------------------------------|-----------------------------------------------------------------|----------------------|
