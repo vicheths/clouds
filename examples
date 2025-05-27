@@ -1,1 +1,18 @@
+### **Python script example for Lambda Function Start & Stop Instances**
 
+```python
+import boto3
+
+ec2 = boto3.client('ec2')
+INSTANCE_IDS = ['i-xxxxxxxxxxxxxxxxx']  # Replace with actual EC2 IDs
+
+def lambda_handler(event, context):
+    action = event.get('action', 'stop')  # Default action: stop
+    if action == 'start':
+        ec2.start_instances(InstanceIds=INSTANCE_IDS)
+    else:
+        ec2.stop_instances(InstanceIds=INSTANCE_IDS)
+
+    return {"status": "success", "action": action, "instances": INSTANCE_IDS}
+```
+📌 Note: Replace "i-xxxxxxxxxxxxxxxxx" with actual EC2 instance IDs.
