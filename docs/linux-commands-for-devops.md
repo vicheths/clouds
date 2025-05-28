@@ -2,7 +2,7 @@
 Linux is an essential skill for **DevOps engineers, system administrators, and cloud professionals**. Mastering the right commands helps in managing processes, networking, permissions, and automation efficiently. 
 Below is a curated list of Basic Linux tools and their respective commands, categorized for easy reference as you become experts in DevOps, System, and Cloud careers.
 
-🔹**Linux Learning Tools Table**
+🔹**Basic Linux Learning Tools Table, become Expert**
 | **Category**                 | **Description** | **Common Commands** |
 |-----------------------------|----------------|--------------------|
 | **Process Management**       | Check running processes, CPU/memory usage, and process hierarchy | `ps`, `top`, `htop`, `kill`, `pstree` |
