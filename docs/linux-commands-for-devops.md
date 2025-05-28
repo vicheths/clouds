@@ -1,7 +1,8 @@
 # **Overview**
-Linux is an essential skill for **DevOps engineers, system administrators, and cloud professionals**. Mastering the right commands helps in managing processes, networking, permissions, and automation efficiently. Below is a curated list of Linux tools and their respective commands categorized for easy reference.
+Linux is an essential skill for **DevOps engineers, system administrators, and cloud professionals**. Mastering the right commands helps in managing processes, networking, permissions, and automation efficiently. 
+Below is a curated list of Basic Linux tools and their respective commands, categorized for easy reference as you become experts in DevOps, System, and Cloud careers.
 
-#🔹**Linux Learning Tools Table**
+🔹**Linux Learning Tools Table**
 | **Category**                 | **Description** | **Common Commands** |
 |-----------------------------|----------------|--------------------|
 | **Process Management**       | Check running processes, CPU/memory usage, and process hierarchy | `ps`, `top`, `htop`, `kill`, `pstree` |
@@ -19,8 +20,8 @@ Linux is an essential skill for **DevOps engineers, system administrators, and c
 | **System Information**       | Retrieve kernel and architecture details | `uname` |
 
 
-#🔹 **Summary**
+🔹 **Summary**
 Linux skills are **fundamental** for automation, **cloud deployments**, and **DevOps workflows**. Mastering these commands will help you troubleshoot, optimize performance, and enhance security.
 
-#🚀 Remember: You'll always pick up additional Linux skills while working in DevOps environments. Keep learning and exploring new commands, automation scripts, and system tuning techniques.
+🚀 **Remember**: You'll always pick up additional Linux skills while working in DevOps environments. Keep learning and exploring new commands, automation scripts, and system tuning techniques.
 
