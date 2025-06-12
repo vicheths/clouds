@@ -1,0 +1,1 @@
+Store visual assets
