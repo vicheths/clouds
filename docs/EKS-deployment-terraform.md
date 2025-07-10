@@ -309,7 +309,8 @@ variable "target_port" {}
 
 ## ✅ Final Notes
 
-* You can now apply this with the terraform command below: 
+* You can now apply this with the terraform command below:
+ 
 `terraform init` - To initialize the terraform state and configuration.  
 `terraform workspace list` - To list current workspace or env where this configuration will deploy to.  
 `terrafrom workspace new dev` - Create a new workspace or env call: "dev".  
@@ -317,9 +318,9 @@ variable "target_port" {}
 `terraform plan -var-file="envs/dev.tfvars"` - The Command to check what the configuration will be deployed (ie: change, add, or destroy) before apply it to the env.  
 `terraform apply -var-file="envs/dev.tfvars"` - The Command to apply the change to our env.  
 
-* One it deployed The resourecs will be created in to your aws infrastructure, which you can verify on aws console.  
-* The worker nodes will automatically register to the NLB target group via ASG.  
-* Customize `user_data.sh` for installing node agents or runtime configs.  
+* One it deployed The resourecs will be created in to your aws infrastructure, which you can verify on aws console.
+* The worker nodes will automatically register to the NLB target group via ASG.
+* Customize `user_data.sh` for installing node agents or runtime configs.
 
 ---
 
