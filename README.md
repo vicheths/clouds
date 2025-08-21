@@ -16,3 +16,5 @@ Optimize Costs: Reduce unnecessary expenses by leveraging efficient billing and 
 4. Performance Efficiency
 5. Cost Optimization
 6. Sustainability
+
+Please refer to the docs folder in the repository to find the definition of each pillar.
